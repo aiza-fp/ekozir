@@ -1,0 +1,5 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ */
+//rootProject.name = System.getenv('CHAINCODE_NAME') ?: 'basic'
+rootProject.name = 'ChaincodeJava'
