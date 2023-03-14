@@ -119,18 +119,22 @@ public final class App {
 		// Initialize a set of asset data on the ledger using the chaincode 'InitLedger'
 		// function.
 		// initLedger();
-		if ("getAllAssets".equals(args[0])) {
-			// Return all the current assets on the ledger.
-			getAllAssets();
-		} else if ("createAsset".equals(args[0])) {
-			// Create a new asset on the ledger.
-			createAsset();
-		} else if ("readAsset".equals(args[0])) {
-			// Get the asset details by assetID.
-			readAssetById(args[1]);
-		} else if ("updateAsset".equals(args[0])) {
-			// Update an asset which does not exist.
-			updateNonExistentAsset();
+		if (args != null && args.length > 0) {
+			if ("getAllAssets".equals(args[0])) {
+				// Return all the current assets on the ledger.
+				getAllAssets();
+			} else if ("createAsset".equals(args[0])) {
+				// Create a new asset on the ledger.
+				createAsset();
+			} else if ("readAsset".equals(args[0])) {
+				// Get the asset details by assetID.
+				readAssetById(args[1]);
+			} else if ("updateAsset".equals(args[0])) {
+				// Update an asset which does not exist.
+				updateNonExistentAsset();
+			}
+		}else {
+			System.out.println("Especifica argumento: getAllAssets, createAsset, readAsset, updateAsset.");
 		}
 		// Update an existing asset asynchronously.
 		// transferAssetAsync();
@@ -191,10 +195,9 @@ public final class App {
 	 * Submit transaction asynchronously, allowing the application to process the
 	 * smart contract response (e.g. update a UI) while waiting for the commit
 	 * notification.
-	 
-	/*
-	 * private void transferAssetAsync() throws EndorseException, SubmitException,
-	 * CommitStatusException { System.out.
+	 * 
+	 * /* private void transferAssetAsync() throws EndorseException,
+	 * SubmitException, CommitStatusException { System.out.
 	 * println("\n--> Async Submit Transaction: TransferAsset, updates existing asset owner"
 	 * );
 	 * 
