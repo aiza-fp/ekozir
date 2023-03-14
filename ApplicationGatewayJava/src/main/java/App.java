@@ -39,11 +39,14 @@ public final class App {
 	private static final String CHAINCODE_NAME = System.getenv().getOrDefault("CHAINCODE_NAME", "basic");
 
 	// Path to crypto materials.
-	private static final Path CRYPTO_PATH = Paths.get("../../test-network/organizations/peerOrganizations/org1.example.com");
+	private static final Path CRYPTO_PATH = Paths
+			.get("../../test-network/organizations/peerOrganizations/org1.example.com");
 	// Path to user certificate.
-	private static final Path CERT_PATH = CRYPTO_PATH.resolve(Paths.get("users/User1@org1.example.com/msp/signcerts/User1@org1.example.com-cert.pem")); //cert.pem
+	private static final Path CERT_PATH = CRYPTO_PATH
+			.resolve(Paths.get("users/User1@org1.example.com/msp/signcerts/User1@org1.example.com-cert.pem")); // cert.pem
 	// Path to user private key directory.
-	private static final Path KEY_DIR_PATH = CRYPTO_PATH.resolve(Paths.get("users/User1@org1.example.com/msp/keystore"));
+	private static final Path KEY_DIR_PATH = CRYPTO_PATH
+			.resolve(Paths.get("users/User1@org1.example.com/msp/keystore"));
 	// Path to peer tls certificate.
 	private static final Path TLS_CERT_PATH = CRYPTO_PATH.resolve(Paths.get("peers/peer0.org1.example.com/tls/ca.crt"));
 
@@ -68,7 +71,7 @@ public final class App {
 				.commitStatusOptions(options -> options.withDeadlineAfter(1, TimeUnit.MINUTES));
 
 		try (var gateway = builder.connect()) {
-			new App(gateway).run();
+			new App(gateway).run(args);
 		} finally {
 			channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
 		}
@@ -112,33 +115,36 @@ public final class App {
 		contract = network.getContract(CHAINCODE_NAME);
 	}
 
-	public void run() throws GatewayException, CommitException {
-		// Initialize a set of asset data on the ledger using the chaincode 'InitLedger' function.
-		//initLedger();
-
-		// Return all the current assets on the ledger.
-		getAllAssets();
-
-		// Create a new asset on the ledger.
-		createAsset();
-
+	public void run(final String[] args) throws GatewayException, CommitException {
+		// Initialize a set of asset data on the ledger using the chaincode 'InitLedger'
+		// function.
+		// initLedger();
+		if ("getAllAssets".equals(args[0])) {
+			// Return all the current assets on the ledger.
+			getAllAssets();
+		} else if ("createAsset".equals(args[0])) {
+			// Create a new asset on the ledger.
+			createAsset();
+		} else if ("readAsset".equals(args[0])) {
+			// Get the asset details by assetID.
+			readAssetById(args[1]);
+		} else if ("updateAsset".equals(args[0])) {
+			// Update an asset which does not exist.
+			updateNonExistentAsset();
+		}
 		// Update an existing asset asynchronously.
-		//transferAssetAsync();
+		// transferAssetAsync();
 
-		// Get the asset details by assetID.
-		readAssetById();
-
-		// Update an asset which does not exist.
-		updateNonExistentAsset();
 	}
-	
+
 	/**
 	 * This type of transaction would typically only be run once by an application
 	 * the first time it was started after its initial deployment. A new version of
 	 * the chaincode deployed later would likely not need to run an "init" function.
 	 */
 	private void initLedger() throws EndorseException, SubmitException, CommitStatusException, CommitException {
-		System.out.println("\n--> Submit Transaction: InitLedger, function creates the initial set of assets on the ledger");
+		System.out.println(
+				"\n--> Submit Transaction: InitLedger, function creates the initial set of assets on the ledger");
 
 		contract.submitTransaction("InitLedger");
 
@@ -149,10 +155,11 @@ public final class App {
 	 * Evaluate a transaction to query ledger state.
 	 */
 	private void getAllAssets() throws GatewayException {
-		System.out.println("\n--> Evaluate Transaction: GetAllAssets, function returns all the current assets on the ledger");
+		System.out.println(
+				"\n--> Evaluate Transaction: GetAllAssets, function returns all the current assets on the ledger");
 
 		var result = contract.evaluateTransaction("GetAllAssets");
-		
+
 		System.out.println("*** Result: " + prettyJson(result));
 	}
 
@@ -172,47 +179,47 @@ public final class App {
 	private void createAsset() throws EndorseException, SubmitException, CommitStatusException, CommitException {
 		System.out.println("\n--> Submit Transaction: CreateAsset, creates new asset");
 
-		//contract.submitTransaction("CreateAsset", assetId, "yellow", "5", "Tom", "1300");
-		contract.submitTransaction("CreateAsset", assetId, "materiala", "Recymet", "FP Zornotza", "13", "burdina", "20 Kg", Instant.now().toString());
+		// contract.submitTransaction("CreateAsset", assetId, "yellow", "5", "Tom",
+		// "1300");
+		contract.submitTransaction("CreateAsset", assetId, "materiala", "Recymet", "FP Zornotza", "13", "burdina",
+				"20 Kg", Instant.now().toString());
 
 		System.out.println("*** Transaction committed successfully");
 	}
 
-	/**
+	/*
 	 * Submit transaction asynchronously, allowing the application to process the
 	 * smart contract response (e.g. update a UI) while waiting for the commit
 	 * notification.
-	 */
+	 
 	/*
-	private void transferAssetAsync() throws EndorseException, SubmitException, CommitStatusException {
-		System.out.println("\n--> Async Submit Transaction: TransferAsset, updates existing asset owner");
-
-		var commit = contract.newProposal("TransferAsset")
-				.addArguments(assetId, "Saptha")
-				.build()
-				.endorse()
-				.submitAsync();
-
-		var result = commit.getResult();
-		var oldOwner = new String(result, StandardCharsets.UTF_8);
-
-		System.out.println("*** Successfully submitted transaction to transfer ownership from " + oldOwner + " to Saptha");
-		System.out.println("*** Waiting for transaction commit");
-
-		var status = commit.getStatus();
-		if (!status.isSuccessful()) {
-			throw new RuntimeException("Transaction " + status.getTransactionId() +
-					" failed to commit with status code " + status.getCode());
-		}
-		
-		System.out.println("*** Transaction committed successfully");
-	}
-*/
-	private void readAssetById() throws GatewayException {
+	 * private void transferAssetAsync() throws EndorseException, SubmitException,
+	 * CommitStatusException { System.out.
+	 * println("\n--> Async Submit Transaction: TransferAsset, updates existing asset owner"
+	 * );
+	 * 
+	 * var commit = contract.newProposal("TransferAsset") .addArguments(assetId,
+	 * "Saptha") .build() .endorse() .submitAsync();
+	 * 
+	 * var result = commit.getResult(); var oldOwner = new String(result,
+	 * StandardCharsets.UTF_8);
+	 * 
+	 * System.out.
+	 * println("*** Successfully submitted transaction to transfer ownership from "
+	 * + oldOwner + " to Saptha");
+	 * System.out.println("*** Waiting for transaction commit");
+	 * 
+	 * var status = commit.getStatus(); if (!status.isSuccessful()) { throw new
+	 * RuntimeException("Transaction " + status.getTransactionId() +
+	 * " failed to commit with status code " + status.getCode()); }
+	 * 
+	 * System.out.println("*** Transaction committed successfully"); }
+	 */
+	private void readAssetById(String id) throws GatewayException {
 		System.out.println("\n--> Evaluate Transaction: ReadAsset, function returns asset attributes");
 
-		var evaluateResult = contract.evaluateTransaction("ReadAsset", assetId);
-		
+		var evaluateResult = contract.evaluateTransaction("ReadAsset", id);
+
 		System.out.println("*** Result:" + prettyJson(evaluateResult));
 	}
 
@@ -222,10 +229,12 @@ public final class App {
 	 */
 	private void updateNonExistentAsset() {
 		try {
-			System.out.println("\n--> Submit Transaction: UpdateAsset asset70, asset70 does not exist and should return an error");
-			
-			contract.submitTransaction("UpdateAsset", "asset", "materiala", "Recymet", "FP Zornotza", "13", "burdina", "20 Kg", Instant.now().toString());
-			
+			System.out.println(
+					"\n--> Submit Transaction: UpdateAsset asset70, asset70 does not exist and should return an error");
+
+			contract.submitTransaction("UpdateAsset", "asset", "materiala", "Recymet", "FP Zornotza", "13", "burdina",
+					"20 Kg", Instant.now().toString());
+
 			System.out.println("******** FAILED to return an error");
 		} catch (EndorseException | SubmitException | CommitStatusException e) {
 			System.out.println("*** Successfully caught the error: ");
