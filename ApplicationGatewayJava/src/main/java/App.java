@@ -41,7 +41,7 @@ public final class App {
 	// Path to crypto materials.
 	private static final Path CRYPTO_PATH = Paths.get("../../test-network/organizations/peerOrganizations/org1.example.com");
 	// Path to user certificate.
-	private static final Path CERT_PATH = CRYPTO_PATH.resolve(Paths.get("users/User1@org1.example.com/msp/signcerts/cert.pem"));
+	private static final Path CERT_PATH = CRYPTO_PATH.resolve(Paths.get("users/User1@org1.example.com/msp/signcerts/User1@org1.example.com-cert.pem")); //cert.pem
 	// Path to user private key directory.
 	private static final Path KEY_DIR_PATH = CRYPTO_PATH.resolve(Paths.get("users/User1@org1.example.com/msp/keystore"));
 	// Path to peer tls certificate.
@@ -114,7 +114,7 @@ public final class App {
 
 	public void run() throws GatewayException, CommitException {
 		// Initialize a set of asset data on the ledger using the chaincode 'InitLedger' function.
-		initLedger();
+		//initLedger();
 
 		// Return all the current assets on the ledger.
 		getAllAssets();
@@ -123,7 +123,7 @@ public final class App {
 		createAsset();
 
 		// Update an existing asset asynchronously.
-		transferAssetAsync();
+		//transferAssetAsync();
 
 		// Get the asset details by assetID.
 		readAssetById();
@@ -170,9 +170,10 @@ public final class App {
 	 * the ledger.
 	 */
 	private void createAsset() throws EndorseException, SubmitException, CommitStatusException, CommitException {
-		System.out.println("\n--> Submit Transaction: CreateAsset, creates new asset with ID, Color, Size, Owner and AppraisedValue arguments");
+		System.out.println("\n--> Submit Transaction: CreateAsset, creates new asset");
 
-		contract.submitTransaction("CreateAsset", assetId, "yellow", "5", "Tom", "1300");
+		//contract.submitTransaction("CreateAsset", assetId, "yellow", "5", "Tom", "1300");
+		contract.submitTransaction("CreateAsset", assetId, "materiala", "Recymet", "FP Zornotza", "13", "burdina", "20 Kg", Instant.now().toString());
 
 		System.out.println("*** Transaction committed successfully");
 	}
@@ -182,6 +183,7 @@ public final class App {
 	 * smart contract response (e.g. update a UI) while waiting for the commit
 	 * notification.
 	 */
+	/*
 	private void transferAssetAsync() throws EndorseException, SubmitException, CommitStatusException {
 		System.out.println("\n--> Async Submit Transaction: TransferAsset, updates existing asset owner");
 
@@ -205,7 +207,7 @@ public final class App {
 		
 		System.out.println("*** Transaction committed successfully");
 	}
-
+*/
 	private void readAssetById() throws GatewayException {
 		System.out.println("\n--> Evaluate Transaction: ReadAsset, function returns asset attributes");
 
@@ -222,7 +224,7 @@ public final class App {
 		try {
 			System.out.println("\n--> Submit Transaction: UpdateAsset asset70, asset70 does not exist and should return an error");
 			
-			contract.submitTransaction("UpdateAsset", "asset70", "blue", "5", "Tomoko", "300");
+			contract.submitTransaction("UpdateAsset", "asset", "materiala", "Recymet", "FP Zornotza", "13", "burdina", "20 Kg", Instant.now().toString());
 			
 			System.out.println("******** FAILED to return an error");
 		} catch (EndorseException | SubmitException | CommitStatusException e) {
