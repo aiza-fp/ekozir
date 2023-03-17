@@ -26,8 +26,20 @@ Discover:
 
 Orain Chaincodeko funtzioak deitu ditzakegu:
 
-´minifab invoke -p '"GetAllAssets"'
+`minifab invoke -p '"GetAllAssets"'`
 
 ![image](https://user-images.githubusercontent.com/94653085/225779890-afeaa088-e0b5-4746-8e6d-aa59865811a1.png)
+
+![image](https://user-images.githubusercontent.com/94653085/225780862-379a447c-7c4c-4247-9232-f46356d965f4.png)
+
+![image](https://user-images.githubusercontent.com/94653085/225781345-7b8b3805-18b7-4bc8-b1bc-558a51aa4a9a.png)
+
+![image](https://user-images.githubusercontent.com/94653085/225781500-9f3b1483-f523-4d32-a16d-d7bb1f996c3a.png)
+
+![image](https://user-images.githubusercontent.com/94653085/225781684-2aec8075-b3e3-44cf-914b-9d4e612bf005.png)
+
+![image](https://user-images.githubusercontent.com/94653085/225781899-78b8ad7e-afae-4d5d-8825-090b5a30deca.png)
+
+
 
 
