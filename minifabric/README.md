@@ -4,6 +4,14 @@
 
 Minifabric instalazioa: https://github.com/litong01/minifabric
 
+Datozen pauso guztiak komando baten bidez egin daitezke **vars/chaincode/ekozir/java** karpeta sortu eta bertan ChaincodeJava karpetaren edukia jartzen badugu:
+
+`minifab up -i 2.4 -o org1.ekozir.com -c channel1 -n ekozir -d false -l java`
+
+![image](https://user-images.githubusercontent.com/94653085/226212857-b68aaf08-879c-4db5-b9e3-ba1b83348efc.png)
+
+## Sarea sortu:
+
 **spec.yaml** fitxategia instalazio karpetara kopiatu eta abiarazi komando hau erabiliz:
 
 `minifab netup -i 2.4 -o org1.ekozir.com`
@@ -12,11 +20,19 @@ Minifabric instalazioa: https://github.com/litong01/minifabric
 
 ![image](https://user-images.githubusercontent.com/94653085/226177087-a61addfa-38cd-4dac-8400-06efda29d04b.png)
 
-## Kanal sortu:
+## Kanala sortu:
 
-`minifab create` (-c channel1) kanala zehazteko baina gero approve egitean ez dabil ondo, ez duela aurkitzen dio.
+`minifab create -c channel1`
 
 ![image](https://user-images.githubusercontent.com/94653085/226177500-4328a2a5-6198-49af-bc00-727409269192.png)
+
+## Kanalera batu:
+
+`minifab join`
+
+## Kanala eguneratu peer guztian anchor motakoak izateko:
+
+`minifab anchorupdate`
 
 ## Profilak sortu:
 
@@ -28,22 +44,9 @@ Instalazio karpetan vars/chaincode barrura joan, bertan ekozir/java karpeta sort
 
 `minifab ccup -n ekozir -d false -l java`
 
-edo
-Install:
+Honek pausu guzti hauek batera egiten ditu: install, approve, commit, initialize, discover
 
-`minifab install -n ekozir -l java`
-
-Approve and Commit:
-
-`minifab approve,commit -n ekozir -d false -l java`
-
-![image](https://user-images.githubusercontent.com/94653085/225779643-c97d04bb-1270-42d3-a4ea-5edbd9929829.png)
-
-Discover:
-
-`minifab discover`
-
-![image](https://user-images.githubusercontent.com/94653085/225779994-b5a40574-ace4-4d46-9e7e-357cf1681edd.png)
+![image](https://user-images.githubusercontent.com/94653085/226213842-0e240982-c52c-4401-9f8d-347f2ccb2e4d.png)
 
 Orain Chaincodeko funtzioak deitu ditzakegu:
 
