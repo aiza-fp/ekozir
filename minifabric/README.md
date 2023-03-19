@@ -1,13 +1,34 @@
 # Minifabric erabiliz sarea abiaraztea
 
+## Instalazioa
+
 Minifabric instalazioa: https://github.com/litong01/minifabric
 
 **spec.yaml** fitxategia instalazio karpetara kopiatu eta abiarazi komando hau erabiliz:
 
-`minifabric up -o org1.ekozir.com`
+`minifab netup -i 2.4 -o org1.ekozir.com`
+
+![image](https://user-images.githubusercontent.com/94653085/226176962-a8320f8d-6421-46dc-b5cf-de3d6b43d078.png)
+
+![image](https://user-images.githubusercontent.com/94653085/226177087-a61addfa-38cd-4dac-8400-06efda29d04b.png)
+
+## Kanal sortu:
+
+`minifab create` (-c channel1) kanala zehazteko baina gero approve egitean ez dabil ondo, ez duela aurkitzen dio.
+
+![image](https://user-images.githubusercontent.com/94653085/226177500-4328a2a5-6198-49af-bc00-727409269192.png)
+
+## Profilak sortu:
+
+`minifab profilegen`
+
+## Chaincode bat instalatu
 
 Instalazio karpetan vars/chaincode barrura joan, bertan ekozir/java karpeta sortu eta ChaincodeJava karpetako edukia jarri.
 
+`minifab ccup -n ekozir -d false -l java`
+
+edo
 Install:
 
 `minifab install -n ekozir -l java`
@@ -39,6 +60,10 @@ Orain Chaincodeko funtzioak deitu ditzakegu:
 ![image](https://user-images.githubusercontent.com/94653085/225781684-2aec8075-b3e3-44cf-914b-9d4e612bf005.png)
 
 ![image](https://user-images.githubusercontent.com/94653085/225781899-78b8ad7e-afae-4d5d-8825-090b5a30deca.png)
+
+## Chaincode bertsio berri bat instalatu
+
+´minifab ccup -n ekozir -l java -v 2.0´
 
 ## Explorer
 
