@@ -30,7 +30,7 @@ Datozen pauso guztiak komando baten bidez egin daitezke **vars/chaincode/ekozir/
 
 `minifab join`
 
-## Kanala eguneratu peer guztian anchor motakoak izateko:
+## Kanala eguneratu peer guztiak anchor motakoak izateko:
 
 `minifab anchorupdate`
 
@@ -73,11 +73,12 @@ Momentuko konfigurazioa lortzeko:
 Fitxategi horretako parametroak aldatu ditzakegu eta aldatu ostean:
 
 `minifab channelsign`
+
 `minifab channelupdate`
 
 ## Chaincode bertsio berri bat instalatu
 
-´minifab ccup -n ekozir -l java -v 2.0´
+`minifab ccup -n ekozir -l java -v 2.0`
 
 ## Explorer
 
