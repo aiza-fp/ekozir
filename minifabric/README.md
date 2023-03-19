@@ -64,6 +64,17 @@ Orain Chaincodeko funtzioak deitu ditzakegu:
 
 ![image](https://user-images.githubusercontent.com/94653085/225781899-78b8ad7e-afae-4d5d-8825-090b5a30deca.png)
 
+## Kanalaren konfigurazioa aldatu
+
+Momentuko konfigurazioa lortzeko:
+
+`minifab channelquery` --> honek configurazioaren .json fitxategi bat sortuko du vars karpetan (zein den esango digu).
+
+Fitxategi horretako parametroak aldatu ditzakegu eta aldatu ostean:
+
+`minifab channelsign`
+`minifab channelupdate`
+
 ## Chaincode bertsio berri bat instalatu
 
 ´minifab ccup -n ekozir -l java -v 2.0´
@@ -77,7 +88,6 @@ Sarearen jokaera bistaratzeko 'explorer' bat instala eta exekutatu daiteke:
 ![image](https://user-images.githubusercontent.com/94653085/226072016-7614d23e-a390-4b68-9d52-3fb7553e1840.png)
 
 ![image](https://user-images.githubusercontent.com/94653085/226072192-7a14afdc-5969-4f23-8d50-db6ac69d3c34.png)
-
 
 
 
