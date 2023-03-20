@@ -59,8 +59,7 @@ public final class AppMinifab {
 	private final Contract contract;
 	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-	private final Scanner teclado = new Scanner(System.in);
-
+	
 	public static void main(final String[] args) throws Exception {
 		// The gRPC client connection should be shared by all Gateway connections to
 		// this endpoint.
@@ -139,13 +138,14 @@ public final class AppMinifab {
 			}
 		} else {
 			int opcion = 0;
+			Scanner teclado = new Scanner(System.in);
 			while (opcion != 5) {
 				System.out.println("");
 				System.out.println("1. getAllAssets");
 				System.out.println("2. createAsset");
 				System.out.println("3. readAsset");
-				System.out.println("4. updateAsset.");
-				System.out.println("5. Salir");
+				System.out.println("4. updateAsset");
+				System.out.println("5. SALIR");
 				opcion = teclado.nextInt();
 
 				switch (opcion) {
@@ -167,6 +167,7 @@ public final class AppMinifab {
 					break;
 				}
 			}
+			teclado.close();
 		}
 		// Update an existing asset asynchronously.
 		// transferAssetAsync();
