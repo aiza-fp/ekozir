@@ -36,3 +36,7 @@ application {
     // Define the main class for the application.
     mainClass = 'AppMinifab'
 }
+
+run {
+    standardInput = System.in
+}
