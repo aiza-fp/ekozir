@@ -37,7 +37,7 @@ import io.grpc.netty.shaded.io.grpc.netty.GrpcSslContexts;
 import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
 
 public final class AppMinifab {
-	private static final String MSP_ID = System.getenv().getOrDefault("MSP_ID", "Org1MSP");
+	private static final String MSP_ID = System.getenv().getOrDefault("MSP_ID", "org1-ekozir-com");
 	private static final String CHANNEL_NAME = System.getenv().getOrDefault("CHANNEL_NAME", "channel1");
 	private static final String CHAINCODE_NAME = System.getenv().getOrDefault("CHAINCODE_NAME", "ekozir");
 
