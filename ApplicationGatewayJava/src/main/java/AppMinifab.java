@@ -146,7 +146,8 @@ public final class AppMinifab {
 				System.out.println("3. readAsset");
 				System.out.println("4. updateAsset");
 				System.out.println("5. SALIR");
-				opcion = teclado.nextInt();
+				opcion = Integer.valueOf(teclado.nextLine());
+				opcion = Integer.valueOf(teclado.nextLine());
 
 				switch (opcion) {
 				case 1:
