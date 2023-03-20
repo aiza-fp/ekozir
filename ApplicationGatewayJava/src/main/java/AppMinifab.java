@@ -64,7 +64,6 @@ public final class AppMinifab {
 		// The gRPC client connection should be shared by all Gateway connections to
 		// this endpoint.
 		var channel = newGrpcConnection();
-		System.out.println(channel.toString());
 		var builder = Gateway.newInstance().identity(newIdentity()).signer(newSigner()).connection(channel)
 				// Default timeouts for different gRPC calls
 				.evaluateOptions(options -> options.withDeadlineAfter(5, TimeUnit.SECONDS))
@@ -112,10 +111,8 @@ public final class AppMinifab {
 		// Get a network instance representing the channel where the smart contract is
 		// deployed.
 		var network = gateway.getNetwork(CHANNEL_NAME);
-		System.out.println(network.toString());
 		// Get the smart contract from the network.
 		contract = network.getContract(CHAINCODE_NAME);
-		System.out.println(contract.toString());
 	}
 
 	public void run(final String[] args) throws GatewayException, CommitException {
@@ -155,14 +152,16 @@ public final class AppMinifab {
 					getAllAssets();
 					break;
 				case 2:
+					//TODO
 					createAsset(String.valueOf(Instant.now().toEpochMilli()), "materiala", "Recymet", "FP Zornotza",
 							"13", "burdina", "20 Kg", Instant.now().toString());
 					break;
 				case 3:
-					System.out.print("id: ");
+					System.out.print("id: ");					
 					readAssetById(teclado.next());
 					break;
 				case 4:
+					//TODO
 					System.out.println("Sin implementar");
 					break;
 				default:
