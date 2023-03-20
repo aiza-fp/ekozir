@@ -137,9 +137,9 @@ public final class AppMinifab {
 				updateNonExistentAsset();
 			}
 		} else {
-			String linea = "0";
+			int opcion = 0;
 			Scanner teclado = new Scanner(System.in);
-			while (Integer.valueOf(linea) != 5) {
+			while (opcion != 5) {
 				System.out.println("");
 				System.out.println("1. getAllAssets");
 				System.out.println("2. createAsset");
@@ -147,15 +147,9 @@ public final class AppMinifab {
 				System.out.println("4. updateAsset");
 				System.out.println("5. SALIR");
 				
-				while(teclado.hasNextLine()){
-					System.out.println("hay linea");
-					linea=teclado.nextLine();
-				    //...
-				}
-				System.out.println("Ya no hay linea");
-				linea = teclado.nextLine();
+				opcion = teclado.nextInt();
 
-				switch (Integer.valueOf(linea)) {
+				switch (opcion) {
 				case 1:
 					getAllAssets();
 					break;
