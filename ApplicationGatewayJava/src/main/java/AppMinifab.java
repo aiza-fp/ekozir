@@ -37,6 +37,7 @@ import io.grpc.netty.shaded.io.grpc.netty.GrpcSslContexts;
 import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
 
 public final class AppMinifab {
+	// REVISAR PARÁMETROS PARA QUE SE AJUSTEN A LO DESPLEGADO
 	private static final String MSP_ID = System.getenv().getOrDefault("MSP_ID", "org1-ekozir-com");
 	private static final String CHANNEL_NAME = System.getenv().getOrDefault("CHANNEL_NAME", "channel1");
 	private static final String CHAINCODE_NAME = System.getenv().getOrDefault("CHAINCODE_NAME", "ekozir");
@@ -53,13 +54,12 @@ public final class AppMinifab {
 	private static final Path TLS_CERT_PATH = CRYPTO_PATH.resolve(Paths.get("peers/peer1.org1.ekozir.com/tls/ca.crt"));
 
 	// Gateway peer end point.
-	private static final String PEER_ENDPOINT = "localhost:7051";
+	private static final String PEER_ENDPOINT = "localhost:7003";
 	private static final String OVERRIDE_AUTH = "peer1.org1.ekozir.com";
 
 	private final Contract contract;
 	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-	
 	public static void main(final String[] args) throws Exception {
 		// The gRPC client connection should be shared by all Gateway connections to
 		// this endpoint.
@@ -139,12 +139,13 @@ public final class AppMinifab {
 			Scanner teclado = new Scanner(System.in);
 			while (opcion != 5) {
 				System.out.println("");
-				System.out.println("1. getAllAssets");
-				System.out.println("2. createAsset");
-				System.out.println("3. readAsset");
-				System.out.println("4. updateAsset");
+				System.out.println("1. Obtener todos los registros.");
+				System.out.println("2. Crear registro.");
+				System.out.println("3. Leer registro.");
+				System.out.println("4. Actualizar registro (sin implementar)");
 				System.out.println("5. SALIR");
-				
+				System.out.println("");
+				System.out.print("Selecciona opción: ");
 				opcion = teclado.nextInt();
 
 				switch (opcion) {
@@ -152,16 +153,16 @@ public final class AppMinifab {
 					getAllAssets();
 					break;
 				case 2:
-					//TODO
+					// TODO
 					createAsset(String.valueOf(Instant.now().toEpochMilli()), "materiala", "Recymet", "FP Zornotza",
 							"13", "burdina", "20 Kg", Instant.now().toString());
 					break;
 				case 3:
-					System.out.print("id: ");					
+					System.out.print("id: ");
 					readAssetById(teclado.next());
 					break;
 				case 4:
-					//TODO
+					// TODO
 					System.out.println("Sin implementar");
 					break;
 				default:
