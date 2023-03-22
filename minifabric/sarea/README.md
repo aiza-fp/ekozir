@@ -28,3 +28,18 @@ Recymet makinako **vars/profiles/endpoints.yaml** fitxategia Zornotzako **vars**
 
 `minifab profilegen` exekutatu dezakegu *vars/profiles/endpoints.yaml* eguneratzeko (makina bietan).
 
+Recymet makinako **./vars/JoinRequest_org-recymet-com.json** fitxategiaren edukia, lehen sortu dugun **kanala_config.json** fitxategian txertatu behar dugu:
+
+![image](https://user-images.githubusercontent.com/94653085/227046176-d69c9e17-5073-43c2-a53a-6b5cf8775f00.png)
+
+Bertsioa aldatu dela ere adierazi:
+
+![image](https://user-images.githubusercontent.com/94653085/227047747-e42d7f7f-9a7c-4a67-9ace-06b44a57d20f.png)
+
+`minifab channelsign,channelupdate` exekutatu kanaleko konfigurazio aldaketak eguneratzeko.
+
+## 4.- Recymet-en
+
+`minifab install -n ekozir -l java` (chaincodea vars/chaincode/ekozir/java karpetan utzi ostean).
+
+
