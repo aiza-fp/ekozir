@@ -6,7 +6,7 @@ Minifabric instalazioa: https://github.com/litong01/minifabric
 
 Datozen pauso guztiak komando baten bidez egin daitezke **vars/chaincode/ekozir/java** karpeta sortu eta bertan ChaincodeJava karpetaren edukia jartzen badugu:
 
-`minifab up -i 2.4 -o org1.ekozir.com -c channel1 -n ekozir -d false -l java`
+`minifab up -i 2.4 -o org1.ekozir.com -c channel1 -n ekozir -d false -l java` (-e 7000) gehitu kontainerrak hostean eskuragarri izateko
 
 ![image](https://user-images.githubusercontent.com/94653085/226212857-b68aaf08-879c-4db5-b9e3-ba1b83348efc.png)
 
