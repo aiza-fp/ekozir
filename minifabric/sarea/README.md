@@ -12,21 +12,13 @@ Abiarazi ostean `minifab channelquery`exekutatu **./vars/kanala_config.json** fi
 
 spec.yaml_recymet erabiliz, sarea bakarrik abiarazten dugu, **netup** erabiliz:
 
-`minifab netup -o org.recymet.com -e 7000`
+`minifab netup -i 2.4 -o org.recymet.com -e 7000`
 
 Zornotzako makinako **vars/profiles/endpoints.yaml** fitxategia Recymet-eko **vars** karpetara kopiatu eta:
 
 `minifab nodeimport` exekutatu Recymet makinan, jakin dezan orderer bat kanpoan dagoela.
 
 ## 3.- Zornotzan
-
-Berdina egingo dugu Recymet-eko orderer-a ezaguna izan dadin:
-
-Recymet makinako **vars/profiles/endpoints.yaml** fitxategia Zornotzako **vars** karpetara kopiatu eta:
-
-`minifab nodeimport` exekutatu Zornotzako makinan, jakin dezan orderer bat kanpoan dagoela.
-
-`minifab profilegen` exekutatu dezakegu *vars/profiles/endpoints.yaml* eguneratzeko (makina bietan).
 
 Recymet makinako **./vars/JoinRequest_org-recymet-com.json** fitxategiaren edukia, lehen sortu dugun **kanala_config.json** fitxategian txertatu behar dugu:
 
@@ -41,5 +33,18 @@ Bertsioa aldatu dela ere adierazi:
 ## 4.- Recymet-en
 
 `minifab install -n ekozir -l java` (chaincodea vars/chaincode/ekozir/java karpetan utzi ostean).
+
+`minifab join -c kanala`
+
+`minifab approve`
+
+`minifab anchorupdate`
+
+`minifab profilegen`
+
+## 5.- Zornotzan
+
+`minifab approve`
+
 
 
