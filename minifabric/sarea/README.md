@@ -32,7 +32,7 @@ Bertsioa aldatu dela ere adierazi:
 
 ## 4.- Recymet-en
 
-`minifab install -n ekozir -l java` (chaincodea vars/chaincode/ekozir/java karpetan utzi ostean).
+`minifab install -n ekozir -d false -l java` (chaincodea vars/chaincode/ekozir/java karpetan utzi ostean).
 
 `minifab join -c kanala`
 
@@ -42,7 +42,7 @@ Bertsioa aldatu dela ere adierazi:
 
 `minifab approve`
 
-`minifab commit' --> falla
+`minifab commit` --> falla
 
 
 
