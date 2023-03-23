@@ -6,7 +6,9 @@ fabric:
   - "peer1.org.fpzornotza.com"
   - "peer2.org.fpzornotza.com"
   orderers:
-  - "orderer.fpzornotza.com"
+  - "orderer1.fpzornotza.com"
+  - "orderer2.fpzornotza.com"
+  - "orderer3.fpzornotza.com"
   settings:
     ca:
       FABRIC_LOGGING_SPEC: DEBUG
@@ -23,6 +25,6 @@ fabric:
   ### could be a public IP address or a dns name
   # endpoint_address: 104.196.45.144
   ### set the docker network name to override the automatically generated name.
-  netname: "fpzornotzanet"
+  netname: "ekozirnet"
   ### set the extra optins for docker run command
   # container_options: "--restart=always --log-opt max-size=10m --log-opt max-file=3"
