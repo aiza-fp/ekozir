@@ -38,13 +38,11 @@ Bertsioa aldatu dela ere adierazi:
 
 `minifab approve`
 
-`minifab anchorupdate`
-
-`minifab profilegen`
-
 ## 5.- Zornotzan
 
 `minifab approve`
+
+`minifab commit' --> falla
 
 
 
