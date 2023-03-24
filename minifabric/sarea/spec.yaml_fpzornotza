@@ -4,7 +4,6 @@ fabric:
   - "ca.org.fpzornotza.com"
   peers: 
   - "peer1.org.fpzornotza.com"
-  - "peer2.org.fpzornotza.com"
   orderers:
   - "orderer1.fpzornotza.com"
   - "orderer2.fpzornotza.com"
