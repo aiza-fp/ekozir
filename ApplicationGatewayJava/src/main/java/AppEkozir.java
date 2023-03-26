@@ -93,7 +93,7 @@ public final class AppEkozir {
 					.resolve(Paths.get("users/Admin@org.recymet.com/msp/signcerts/Admin@org.recymet.com-cert.pem"));
 			KEY_DIR_PATH = CRYPTO_PATH.resolve(Paths.get("users/Admin@org.recymet.com/msp/keystore"));
 			TLS_CERT_PATH = CRYPTO_PATH.resolve(Paths.get("peers/peer1.org.recymet.com/tls/ca.crt"));
-			PEER_ENDPOINT = "localhost:7003";
+			PEER_ENDPOINT = "localhost:7002";
 			OVERRIDE_AUTH = "peer1.org.recymet.com";
 			break;
 		case 3:
@@ -103,7 +103,7 @@ public final class AppEkozir {
 					.resolve(Paths.get("users/Admin@org.ormazabal.com/msp/signcerts/Admin@org.ormazabal.com-cert.pem"));
 			KEY_DIR_PATH = CRYPTO_PATH.resolve(Paths.get("users/Admin@org.ormazabal.com/msp/keystore"));
 			TLS_CERT_PATH = CRYPTO_PATH.resolve(Paths.get("peers/peer1.org.ormazabal.com/tls/ca.crt"));
-			PEER_ENDPOINT = "localhost:7003";
+			PEER_ENDPOINT = "localhost:7002";
 			OVERRIDE_AUTH = "peer1.org.ormazabal.com";
 			break;
 		default:
