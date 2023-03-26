@@ -64,54 +64,52 @@ public final class AppEkozir {
 
 		int opcion = 0;
 
-		while (opcion != 4) {
-			System.out.println("");
-			System.out.println("Identifícate:");
-			System.out.println("");
-			System.out.println("1. FP Zornotza");
-			System.out.println("2. Recymet");
-			System.out.println("3. Ormazabal");
-			System.out.println("4. SALIR");
-			System.out.println("");
-			System.out.print("Selecciona opción: ");
-			opcion = teclado.nextInt();
+		System.out.println("");
+		System.out.println("Identifícate:");
+		System.out.println("");
+		System.out.println("1. FP Zornotza");
+		System.out.println("2. Recymet");
+		System.out.println("3. Ormazabal");
+		System.out.println("4. SALIR");
+		System.out.println("");
+		System.out.print("Selecciona opción: ");
+		opcion = teclado.nextInt();
 
-			switch (opcion) {
-			case 1:
-				MSP_ID = "org-fpzornotza-com";
-				CRYPTO_PATH = Paths.get("/home/ekozir/fpzornotza/vars/keyfiles/peerOrganizations/org.fpzornotza.com");
-				CERT_PATH = CRYPTO_PATH.resolve(
-						Paths.get("users/Admin@org.fpzornotza.com/msp/signcerts/Admin@org.fpzornotza.com-cert.pem"));
-				KEY_DIR_PATH = CRYPTO_PATH.resolve(Paths.get("users/Admin@org.fpzornotza.com/msp/keystore"));
-				TLS_CERT_PATH = CRYPTO_PATH.resolve(Paths.get("peers/peer1.org.fpzornotza.com/tls/ca.crt"));
-				PEER_ENDPOINT = "localhost:7003";
-				OVERRIDE_AUTH = "peer1.org.fpzornotza.com";
-				break;
-			case 2:
-				MSP_ID = "org-recymet-com";
-				CRYPTO_PATH = Paths.get("/home/ekozir/recymet/vars/keyfiles/peerOrganizations/org.recymet.com");
-				CERT_PATH = CRYPTO_PATH.resolve(
-						Paths.get("users/Admin@org.recymet.com/msp/signcerts/Admin@org.recymet.com-cert.pem"));
-				KEY_DIR_PATH = CRYPTO_PATH.resolve(Paths.get("users/Admin@org.recymet.com/msp/keystore"));
-				TLS_CERT_PATH = CRYPTO_PATH.resolve(Paths.get("peers/peer1.org.recymet.com/tls/ca.crt"));
-				PEER_ENDPOINT = "localhost:7003";
-				OVERRIDE_AUTH = "peer1.org.recymet.com";
-				break;
-			case 3:
-				MSP_ID = "org-ormazabal-com";
-				CRYPTO_PATH = Paths.get("/home/ekozir/ormazabal/vars/keyfiles/peerOrganizations/org.ormazabal.com");
-				CERT_PATH = CRYPTO_PATH.resolve(
-						Paths.get("users/Admin@org.ormazabal.com/msp/signcerts/Admin@org.ormazabal.com-cert.pem"));
-				KEY_DIR_PATH = CRYPTO_PATH.resolve(Paths.get("users/Admin@org.ormazabal.com/msp/keystore"));
-				TLS_CERT_PATH = CRYPTO_PATH.resolve(Paths.get("peers/peer1.org.ormazabal.com/tls/ca.crt"));
-				PEER_ENDPOINT = "localhost:7003";
-				OVERRIDE_AUTH = "peer1.org.ormazabal.com";
-				break;
-			default:
-				break;
-			}
+		switch (opcion) {
+		case 1:
+			MSP_ID = "org-fpzornotza-com";
+			CRYPTO_PATH = Paths.get("/home/ekozir/fpzornotza/vars/keyfiles/peerOrganizations/org.fpzornotza.com");
+			CERT_PATH = CRYPTO_PATH.resolve(
+					Paths.get("users/Admin@org.fpzornotza.com/msp/signcerts/Admin@org.fpzornotza.com-cert.pem"));
+			KEY_DIR_PATH = CRYPTO_PATH.resolve(Paths.get("users/Admin@org.fpzornotza.com/msp/keystore"));
+			TLS_CERT_PATH = CRYPTO_PATH.resolve(Paths.get("peers/peer1.org.fpzornotza.com/tls/ca.crt"));
+			PEER_ENDPOINT = "localhost:7003";
+			OVERRIDE_AUTH = "peer1.org.fpzornotza.com";
+			break;
+		case 2:
+			MSP_ID = "org-recymet-com";
+			CRYPTO_PATH = Paths.get("/home/ekozir/recymet/vars/keyfiles/peerOrganizations/org.recymet.com");
+			CERT_PATH = CRYPTO_PATH
+					.resolve(Paths.get("users/Admin@org.recymet.com/msp/signcerts/Admin@org.recymet.com-cert.pem"));
+			KEY_DIR_PATH = CRYPTO_PATH.resolve(Paths.get("users/Admin@org.recymet.com/msp/keystore"));
+			TLS_CERT_PATH = CRYPTO_PATH.resolve(Paths.get("peers/peer1.org.recymet.com/tls/ca.crt"));
+			PEER_ENDPOINT = "localhost:7003";
+			OVERRIDE_AUTH = "peer1.org.recymet.com";
+			break;
+		case 3:
+			MSP_ID = "org-ormazabal-com";
+			CRYPTO_PATH = Paths.get("/home/ekozir/ormazabal/vars/keyfiles/peerOrganizations/org.ormazabal.com");
+			CERT_PATH = CRYPTO_PATH
+					.resolve(Paths.get("users/Admin@org.ormazabal.com/msp/signcerts/Admin@org.ormazabal.com-cert.pem"));
+			KEY_DIR_PATH = CRYPTO_PATH.resolve(Paths.get("users/Admin@org.ormazabal.com/msp/keystore"));
+			TLS_CERT_PATH = CRYPTO_PATH.resolve(Paths.get("peers/peer1.org.ormazabal.com/tls/ca.crt"));
+			PEER_ENDPOINT = "localhost:7003";
+			OVERRIDE_AUTH = "peer1.org.ormazabal.com";
+			break;
+		default:
+			break;
 		}
-		
+
 		if (opcion == 1 || opcion == 2 || opcion == 3) {
 			// The gRPC client connection should be shared by all Gateway connections to
 			// this endpoint.
@@ -129,7 +127,7 @@ public final class AppEkozir {
 				channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
 			}
 		}
-		
+
 		teclado.close();
 	}
 
@@ -208,7 +206,7 @@ public final class AppEkozir {
 				break;
 			}
 		}
-		
+
 		// Update an existing asset asynchronously.
 		// transferAssetAsync();
 
