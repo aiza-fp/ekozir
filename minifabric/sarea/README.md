@@ -60,6 +60,10 @@ Orain Recymet makinan chaincodea duten kontainerrak martxan jarri direla ikusi d
 
 Honekin Recymet eta Zornotzaren arteko sarea sortu dugu, bietako peer-ak chaincode berdina eta kanal berdinean daudelarik.
 
+Orain makina batean zein bestean AppEkozir exekutatu dezakegu, identifikatu eta blockchain-ean erregistroak sortu/irakurri:
+
+https://github.com/aiza-fp/ekozir/blob/master/ApplicationGatewayJava/src/main/java/AppEkozir.java
+
 ## Ormazabal gehitu
 
 Prozedura berdina jarraituz Ormazabal gehitzeko, Zornotzan organizazio berria gehitzean errore hau ematen digu:
