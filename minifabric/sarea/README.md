@@ -22,7 +22,7 @@ Zornotzako makinako **vars/profiles/endpoints.yaml** fitxategia Recymet-eko **va
 
 Recymet makinako **./vars/JoinRequest_org-recymet-com.json** fitxategiaren edukia, lehen sortu dugun **kanala_config.json** fitxategian txertatu behar dugu:
 
-Automatikoki egin daiteke fitxategi horren edukia vars/NewOrgJoinRequest.json bezala gordetzen badugu Zornotzan eta hau exekutatuz:
+Automatikoki egin daiteke fitxategi horren edukia **vars/NewOrgJoinRequest.json** bezala gordetzen badugu Zornotzan eta hau exekutatuz:
 
 `minifab orgjoin` 
 
@@ -60,5 +60,10 @@ Orain Recymet makinan chaincodea duten kontainerrak martxan jarri direla ikusi d
 
 Honekin Recymet eta Zornotzaren arteko sarea sortu dugu, bietako peer-ak chaincode berdina eta kanal berdinean daudelarik.
 
+## Ormazabal gehitu
 
+Prozedura berdina jarraituz Ormazabal gehitzeko, Zornotzan organizazio berria gehitzean errore hau ematen digu:
 
+![image](https://user-images.githubusercontent.com/94653085/227774442-993e4456-7ef1-4feb-90ec-10b5c36956db.png)
+
+Beste Admin batek ere onatu behar du aldaketa?
