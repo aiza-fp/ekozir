@@ -83,7 +83,7 @@ public final class AppEkozir {
 					Paths.get("users/Admin@org.fpzornotza.com/msp/signcerts/Admin@org.fpzornotza.com-cert.pem"));
 			KEY_DIR_PATH = CRYPTO_PATH.resolve(Paths.get("users/Admin@org.fpzornotza.com/msp/keystore"));
 			TLS_CERT_PATH = CRYPTO_PATH.resolve(Paths.get("peers/peer1.org.fpzornotza.com/tls/ca.crt"));
-			PEER_ENDPOINT = "localhost:7003";
+			PEER_ENDPOINT = "localhost:7002";
 			OVERRIDE_AUTH = "peer1.org.fpzornotza.com";
 			break;
 		case 2:
