@@ -1,4 +1,4 @@
-# 3 organizazio dauzkan sarea sortzen Minifabric bidez
+# 3 organizazio dauzkan sarea sortzen Minifabric bidez 
 
 ## 1.- Zornotzan: sarea abiarazi, chaincodea instalatu
 
