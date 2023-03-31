@@ -69,14 +69,14 @@ public final class AppEkozir {
 		int opcion = 0;
 		System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out), true, StandardCharsets.UTF_8));
 		System.out.println("");
-		System.out.println("Identifícate:");
+		System.out.println("Identif\u00edcate:");
 		System.out.println("");
 		System.out.println("1. FP Zornotza");
 		System.out.println("2. Recymet");
 		System.out.println("3. Ormazabal");
 		System.out.println("4. SALIR");
 		System.out.println("");
-		System.out.print("Selecciona opción: ");
+		System.out.print("Selecciona opci\u00f3n: ");
 		opcion = teclado.nextInt();
 
 		switch (opcion) {
@@ -187,7 +187,7 @@ public final class AppEkozir {
 			System.out.println("4. Actualizar registro (sin implementar)");
 			System.out.println("5. SALIR");
 			System.out.println("");
-			System.out.print("Selecciona opción: ");
+			System.out.print("Selecciona opci\u00f3n: ");
 			opcion = teclado.nextInt();
 
 			switch (opcion) {
@@ -195,7 +195,7 @@ public final class AppEkozir {
 				getAllAssets();
 				break;
 			case 2:
-				System.out.print("\nTipo de transacción: ");
+				System.out.print("\nTipo de transacci\u00f3n: ");
 				tipo = teclado.next();
 				System.out.print("\nDestino: ");
 				destino = teclado.next();
