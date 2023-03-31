@@ -4,7 +4,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import java.io.FileDescriptor;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -39,6 +42,7 @@ import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
 public final class AppEkozir {
 
 	private static String MSP_ID;
+	private static String ORIGEN;
 	private static final String CHANNEL_NAME = "kanala";
 	private static final String CHAINCODE_NAME = "ekozir";
 
@@ -63,7 +67,7 @@ public final class AppEkozir {
 	public static void main(final String[] args) throws Exception {
 
 		int opcion = 0;
-
+		System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out), true, StandardCharsets.UTF_8));
 		System.out.println("");
 		System.out.println("Identifícate:");
 		System.out.println("");
@@ -78,6 +82,7 @@ public final class AppEkozir {
 		switch (opcion) {
 		case 1:
 			MSP_ID = "org-fpzornotza-com";
+			ORIGEN = "FP ZORNOTZA";
 			CRYPTO_PATH = Paths.get("/home/ekozir/fpzornotza/vars/keyfiles/peerOrganizations/org.fpzornotza.com");
 			CERT_PATH = CRYPTO_PATH.resolve(
 					Paths.get("users/Admin@org.fpzornotza.com/msp/signcerts/Admin@org.fpzornotza.com-cert.pem"));
@@ -88,6 +93,7 @@ public final class AppEkozir {
 			break;
 		case 2:
 			MSP_ID = "org-recymet-com";
+			ORIGEN = "RECYMET";
 			CRYPTO_PATH = Paths.get("/home/ekozir/recymet/vars/keyfiles/peerOrganizations/org.recymet.com");
 			CERT_PATH = CRYPTO_PATH
 					.resolve(Paths.get("users/Admin@org.recymet.com/msp/signcerts/Admin@org.recymet.com-cert.pem"));
@@ -98,6 +104,7 @@ public final class AppEkozir {
 			break;
 		case 3:
 			MSP_ID = "org-ormazabal-com";
+			ORIGEN = "ORMAZABAL";
 			CRYPTO_PATH = Paths.get("/home/ekozir/ormazabal/vars/keyfiles/peerOrganizations/org.ormazabal.com");
 			CERT_PATH = CRYPTO_PATH
 					.resolve(Paths.get("users/Admin@org.ormazabal.com/msp/signcerts/Admin@org.ormazabal.com-cert.pem"));
@@ -120,7 +127,7 @@ public final class AppEkozir {
 					.endorseOptions(options -> options.withDeadlineAfter(15, TimeUnit.SECONDS))
 					.submitOptions(options -> options.withDeadlineAfter(5, TimeUnit.SECONDS))
 					.commitStatusOptions(options -> options.withDeadlineAfter(1, TimeUnit.MINUTES));
-			System.out.println(builder.toString());
+			
 			try (var gateway = builder.connect()) {
 				new AppEkozir(gateway).run(args);
 			} finally {
@@ -171,7 +178,7 @@ public final class AppEkozir {
 	public void run(final String[] args) throws GatewayException, CommitException {
 
 		int opcion = 0;
-
+		String tipo,destino,lote,material,peso;
 		while (opcion != 5) {
 			System.out.println("");
 			System.out.println("1. Obtener todos los registros.");
@@ -188,9 +195,18 @@ public final class AppEkozir {
 				getAllAssets();
 				break;
 			case 2:
-				// TODO
-				createAsset(String.valueOf(Instant.now().toEpochMilli()), "materiala", "Recymet", "FP Zornotza", "13",
-						"burdina", "20 Kg", Instant.now().toString());
+				System.out.print("\nTipo de transacción: ");
+				tipo = teclado.next();
+				System.out.print("\nDestino: ");
+				destino = teclado.next();
+				System.out.print("\nLote: ");
+				lote = teclado.next();
+				System.out.print("\nMaterial: ");
+				material = teclado.next();
+				System.out.print("\nPeso: ");
+				peso = teclado.next();
+				createAsset(String.valueOf(Instant.now().toEpochMilli()), tipo, ORIGEN, destino, lote,
+						material, peso, Instant.now().toString());
 				break;
 			case 3:
 				System.out.print("id: ");
@@ -218,24 +234,20 @@ public final class AppEkozir {
 	 * the chaincode deployed later would likely not need to run an "init" function.
 	 */
 	private void initLedger() throws EndorseException, SubmitException, CommitStatusException, CommitException {
-		System.out.println(
-				"\n--> Submit Transaction: InitLedger, function creates the initial set of assets on the ledger");
 
 		contract.submitTransaction("InitLedger");
 
-		System.out.println("*** Transaction committed successfully");
+		System.out.println("*** InitLedger ejecutado correctamente");
 	}
 
 	/**
 	 * Evaluate a transaction to query ledger state.
 	 */
 	private void getAllAssets() throws GatewayException {
-		System.out.println(
-				"\n--> Evaluate Transaction: GetAllAssets, function returns all the current assets on the ledger");
 
 		var result = contract.evaluateTransaction("GetAllAssets");
 
-		System.out.println("*** Result: " + prettyJson(result));
+		System.out.println("*** Resultado: " + prettyJson(result));
 	}
 
 	private String prettyJson(final byte[] json) {
@@ -254,11 +266,10 @@ public final class AppEkozir {
 	private void createAsset(final String id, final String tipo, final String origen, final String destino,
 			final String lote, final String material, final String peso, final String fecha)
 			throws EndorseException, SubmitException, CommitStatusException, CommitException {
-		System.out.println("\n--> Submit Transaction: CreateAsset, creates new asset");
 
 		contract.submitTransaction("CreateAsset", id, tipo, origen, destino, lote, material, peso, fecha);
 
-		System.out.println("*** Transaction committed successfully");
+		System.out.println("*** CreateAsset ejecutado correctamente");
 	}
 
 	/*
@@ -289,11 +300,10 @@ public final class AppEkozir {
 	 * System.out.println("*** Transaction committed successfully"); }
 	 */
 	private void readAssetById(String id) throws GatewayException {
-		System.out.println("\n--> Evaluate Transaction: ReadAsset, function returns asset attributes");
 
 		var evaluateResult = contract.evaluateTransaction("ReadAsset", id);
 
-		System.out.println("*** Result:" + prettyJson(evaluateResult));
+		System.out.println("*** Resultado:" + prettyJson(evaluateResult));
 	}
 
 	/**
