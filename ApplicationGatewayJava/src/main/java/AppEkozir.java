@@ -62,7 +62,7 @@ public final class AppEkozir {
 	private final Contract contract;
 	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-	private static final Scanner teclado = new Scanner(System.in);
+	private static final Scanner teclado = new Scanner(System.in).useDelimiter("\\n");
 
 	public static void main(final String[] args) throws Exception {
 

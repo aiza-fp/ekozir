@@ -37,7 +37,7 @@ import io.grpc.netty.shaded.io.grpc.netty.GrpcSslContexts;
 import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
 
 public final class AppMinifab {
-	// REVISAR PARÁMETROS PARA QUE SE AJUSTEN A LO DESPLEGADO
+	// REVISAR PARAMETROS PARA QUE SE AJUSTEN A LO DESPLEGADO
 	private static final String MSP_ID = System.getenv().getOrDefault("MSP_ID", "org1-ekozir-com");
 	private static final String CHANNEL_NAME = System.getenv().getOrDefault("CHANNEL_NAME", "channel1");
 	private static final String CHAINCODE_NAME = System.getenv().getOrDefault("CHAINCODE_NAME", "ekozir");
@@ -145,7 +145,7 @@ public final class AppMinifab {
 				System.out.println("4. Actualizar registro (sin implementar)");
 				System.out.println("5. SALIR");
 				System.out.println("");
-				System.out.print("Selecciona opción: ");
+				System.out.print("Selecciona opci\u00f3n: ");
 				opcion = teclado.nextInt();
 
 				switch (opcion) {
