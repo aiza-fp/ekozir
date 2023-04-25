@@ -220,8 +220,10 @@ public final class AppEkozir {
 				System.out.println("Deja sin rellenar los campos que no quieras modificar.");
 				System.out.print("\nTipo de transacci\u00f3n: ");
 				tipo = teclado.next();
+				//if (tipo!= null && tipo.equals("")) tipo = null;
 				System.out.print("\nOrigen: ");
 				origen = teclado.next();
+				//if (origen!= null && origen.equals("")) origen = null;
 				System.out.print("\nDestino: ");
 				destino = teclado.next();
 				System.out.print("\nLote: ");
@@ -230,7 +232,7 @@ public final class AppEkozir {
 				material = teclado.next();
 				System.out.print("\nPeso: ");
 				peso = teclado.next();
-				updateAsset(id,tipo,origen,destino,lote,material,peso,Instant.now().toString());
+				updateAsset(id,null,null,destino,lote,material,peso,Instant.now().toString());
 				break;
 			default:
 				break;
