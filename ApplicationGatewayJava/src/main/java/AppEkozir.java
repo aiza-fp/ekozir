@@ -33,6 +33,7 @@ import org.hyperledger.fabric.client.identity.X509Identity;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import io.grpc.ManagedChannel;
@@ -127,7 +128,7 @@ public final class AppEkozir {
 					.endorseOptions(options -> options.withDeadlineAfter(15, TimeUnit.SECONDS))
 					.submitOptions(options -> options.withDeadlineAfter(5, TimeUnit.SECONDS))
 					.commitStatusOptions(options -> options.withDeadlineAfter(1, TimeUnit.MINUTES));
-			
+
 			try (var gateway = builder.connect()) {
 				new AppEkozir(gateway).run(args);
 			} finally {
@@ -178,7 +179,7 @@ public final class AppEkozir {
 	public void run(final String[] args) throws GatewayException, CommitException {
 
 		int opcion = 0;
-		String id,tipo,origen,destino,lote,material,peso;
+		String id, tipo, origen, destino, lote, material, peso;
 		while (opcion != 5) {
 			System.out.println("");
 			System.out.println("1. Obtener todos los registros.");
@@ -205,8 +206,8 @@ public final class AppEkozir {
 				material = teclado.next();
 				System.out.print("\nPeso: ");
 				peso = teclado.next();
-				createAsset(String.valueOf(Instant.now().toEpochMilli()), tipo, ORIGEN, destino, lote,
-						material, peso, Instant.now().toString());
+				createAsset(String.valueOf(Instant.now().toEpochMilli()), tipo, ORIGEN, destino, lote, material, peso,
+						Instant.now().toString());
 				break;
 			case 3:
 				System.out.print("id: ");
@@ -215,25 +216,38 @@ public final class AppEkozir {
 			case 4:
 				System.out.print("id: ");
 				id = teclado.next();
-				readAssetById(id);
-				System.out.println();
-				System.out.println("Deja sin rellenar los campos que no quieras modificar.");
-				System.out.print("\nTipo de transacci\u00f3n: ");
-				tipo = teclado.next();
-				//if (tipo!= null && tipo.equals("")) tipo = null;
-				System.out.print("\nOrigen: ");
-				origen = teclado.next();
-				//if (origen!= null && origen.equals("")) origen = null;
-				System.out.print("\nDestino: ");
-				destino = teclado.next();
-				System.out.print("\nLote: ");
-				lote = teclado.next();
-				System.out.print("\nMaterial: ");
-				material = teclado.next();
-				System.out.print("\nPeso: ");
-				peso = teclado.next();
-				updateAsset(id,null,null,destino,lote,material,peso,Instant.now().toString());
+
+				JsonObject rootObject = readAssetById(id);
+				origen = rootObject.get("origen").toString();
+				if (ORIGEN.equals(origen)) {
+					System.out.println();
+					System.out.println("Deja sin rellenar los campos que no quieras modificar.");
+					System.out.print("\nTipo de transacci\u00f3n: ");
+					tipo = teclado.next();
+					if (tipo != null && tipo.trim().equals(""))
+						tipo = rootObject.get("tipo").toString();
+					System.out.print("\nDestino: ");
+					destino = teclado.next();
+					if (destino != null && destino.trim().equals(""))
+						rootObject.get("destino").toString();
+					System.out.print("\nLote: ");
+					lote = teclado.next();
+					if (lote != null && lote.trim().equals(""))
+						rootObject.get("lote").toString();
+					System.out.print("\nMaterial: ");
+					material = teclado.next();
+					if (material != null && material.trim().equals(""))
+						rootObject.get("material").toString();
+					System.out.print("\nPeso: ");
+					peso = teclado.next();
+					if (peso != null && peso.trim().equals(""))
+						rootObject.get("peso").toString();
+					updateAsset(id, tipo, ORIGEN, destino, lote, material, peso, Instant.now().toString());
+				} else {
+					System.out.println("\nNo puedes modificar registros cuyo origen no seas tu.");
+				}
 				break;
+
 			default:
 				break;
 			}
@@ -315,11 +329,16 @@ public final class AppEkozir {
 	 * 
 	 * System.out.println("*** Transaction committed successfully"); }
 	 */
-	private void readAssetById(String id) throws GatewayException {
+	private JsonObject readAssetById(String id) throws GatewayException {
 
 		var evaluateResult = contract.evaluateTransaction("ReadAsset", id);
 
-		System.out.println("*** Resultado:" + prettyJson(evaluateResult));
+		String prettyJson = prettyJson(evaluateResult);
+		System.out.println("*** Resultado:" + prettyJson);
+
+		String str = new String(evaluateResult, StandardCharsets.UTF_8);
+		JsonObject rootObject = JsonParser.parseString(str).getAsJsonObject();
+		return rootObject;
 	}
 
 	private void updateAsset(final String id, final String tipo, final String origen, final String destino,
@@ -327,7 +346,7 @@ public final class AppEkozir {
 		try {
 			contract.submitTransaction("UpdateAsset", id, tipo, origen, destino, lote, material, peso, fecha);
 
-			//System.out.println("******** FAILED to return an error");
+			// System.out.println("******** FAILED to return an error");
 		} catch (EndorseException | SubmitException | CommitStatusException e) {
 			System.out.println("*** Successfully caught the error: ");
 			e.printStackTrace(System.out);
