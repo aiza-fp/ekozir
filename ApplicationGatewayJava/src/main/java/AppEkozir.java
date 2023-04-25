@@ -218,33 +218,31 @@ public final class AppEkozir {
 				id = teclado.next();
 
 				JsonObject rootObject = readAssetById(id);
-				origen = rootObject.get("origen").toString();
-				System.out.println(rootObject);
-				System.out.println("Origen1: " + origen +"-");
-				System.out.println("Origen2: " + ORIGEN +"-");
+				origen = rootObject.get("origen").getAsString();
+
 				if (ORIGEN.equals(origen)) {
 					System.out.println();
 					System.out.println("Deja sin rellenar los campos que no quieras modificar.");
 					System.out.print("\nTipo de transacci\u00f3n: ");
 					tipo = teclado.next();
 					if (tipo != null && tipo.trim().equals(""))
-						tipo = rootObject.get("tipo").toString();
+						tipo = rootObject.get("tipo").getAsString();
 					System.out.print("\nDestino: ");
 					destino = teclado.next();
 					if (destino != null && destino.trim().equals(""))
-						rootObject.get("destino").toString();
+						rootObject.get("destino").getAsString();
 					System.out.print("\nLote: ");
 					lote = teclado.next();
 					if (lote != null && lote.trim().equals(""))
-						rootObject.get("lote").toString();
+						rootObject.get("lote").getAsString();
 					System.out.print("\nMaterial: ");
 					material = teclado.next();
 					if (material != null && material.trim().equals(""))
-						rootObject.get("material").toString();
+						rootObject.get("material").getAsString();
 					System.out.print("\nPeso: ");
 					peso = teclado.next();
 					if (peso != null && peso.trim().equals(""))
-						rootObject.get("peso").toString();
+						rootObject.get("peso").getAsString();
 					updateAsset(id, tipo, ORIGEN, destino, lote, material, peso, Instant.now().toString());
 				} else {
 					System.out.println("\nNo puedes modificar registros cuyo origen no seas tu.");
