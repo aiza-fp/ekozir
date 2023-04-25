@@ -220,7 +220,8 @@ public final class AppEkozir {
 				JsonObject rootObject = readAssetById(id);
 				origen = rootObject.get("origen").toString();
 				System.out.println(rootObject);
-				System.out.println("Origen: " + origen);
+				System.out.println("Origen1: " + origen +"-");
+				System.out.println("Origen2: " + ORIGEN +"-");
 				if (ORIGEN.equals(origen)) {
 					System.out.println();
 					System.out.println("Deja sin rellenar los campos que no quieras modificar.");
