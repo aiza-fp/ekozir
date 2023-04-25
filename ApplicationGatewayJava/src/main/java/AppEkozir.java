@@ -225,24 +225,24 @@ public final class AppEkozir {
 					System.out.println("Deja sin rellenar los campos que no quieras modificar.");
 					System.out.print("\nTipo de transacci\u00f3n: ");
 					tipo = teclado.next();
-					if (tipo != null && tipo.trim().equals(""))
+					if (tipo != null && tipo.trim().length() == 0)
 						tipo = rootObject.get("tipo").getAsString();
 					System.out.print("\nDestino: ");
 					destino = teclado.next();
-					if (destino != null && destino.trim().equals(""))
-						rootObject.get("destino").getAsString();
+					if (destino != null && destino.trim().length() == 0)
+						destino = rootObject.get("destino").getAsString();
 					System.out.print("\nLote: ");
 					lote = teclado.next();
-					if (lote != null && lote.trim().equals(""))
-						rootObject.get("lote").getAsString();
+					if (lote != null && lote.trim().length() == 0)
+						lote = rootObject.get("lote").getAsString();
 					System.out.print("\nMaterial: ");
 					material = teclado.next();
-					if (material != null && material.trim().equals(""))
-						rootObject.get("material").getAsString();
+					if (material != null && material.trim().length() == 0)
+						material = rootObject.get("material").getAsString();
 					System.out.print("\nPeso: ");
 					peso = teclado.next();
-					if (peso != null && peso.trim().equals(""))
-						rootObject.get("peso").getAsString();
+					if (peso != null && peso.trim().length() == 0)
+						peso = rootObject.get("peso").getAsString();
 					updateAsset(id, tipo, ORIGEN, destino, lote, material, peso, Instant.now().toString());
 				} else {
 					System.out.println("\nNo puedes modificar registros cuyo origen no seas tu.");
