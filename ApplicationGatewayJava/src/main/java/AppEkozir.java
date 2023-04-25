@@ -178,13 +178,13 @@ public final class AppEkozir {
 	public void run(final String[] args) throws GatewayException, CommitException {
 
 		int opcion = 0;
-		String tipo,destino,lote,material,peso;
+		String id,tipo,origen,destino,lote,material,peso;
 		while (opcion != 5) {
 			System.out.println("");
 			System.out.println("1. Obtener todos los registros.");
 			System.out.println("2. Crear registro.");
 			System.out.println("3. Leer registro.");
-			System.out.println("4. Actualizar registro (sin implementar)");
+			System.out.println("4. Actualizar registro.");
 			System.out.println("5. SALIR");
 			System.out.println("");
 			System.out.print("Selecciona opci\u00f3n: ");
@@ -213,10 +213,24 @@ public final class AppEkozir {
 				readAssetById(teclado.next());
 				break;
 			case 4:
-				// TODO
-				System.out.println("Sin implementar");
-				// Update an asset which does not exist.
-				// updateNonExistentAsset();
+				System.out.print("id: ");
+				id = teclado.next();
+				readAssetById(id);
+				System.out.println();
+				System.out.println("Deja sin rellenar los campos que no quieras modificar.");
+				System.out.print("\nTipo de transacci\u00f3n: ");
+				tipo = teclado.next();
+				System.out.print("\nOrigen: ");
+				origen = teclado.next();
+				System.out.print("\nDestino: ");
+				destino = teclado.next();
+				System.out.print("\nLote: ");
+				lote = teclado.next();
+				System.out.print("\nMaterial: ");
+				material = teclado.next();
+				System.out.print("\nPeso: ");
+				peso = teclado.next();
+				updateAsset(id,tipo,origen,destino,lote,material,peso,Instant.now().toString());
 				break;
 			default:
 				break;
@@ -306,19 +320,12 @@ public final class AppEkozir {
 		System.out.println("*** Resultado:" + prettyJson(evaluateResult));
 	}
 
-	/**
-	 * submitTransaction() will throw an error containing details of any error
-	 * responses from the smart contract.
-	 */
-	private void updateNonExistentAsset() {
+	private void updateAsset(final String id, final String tipo, final String origen, final String destino,
+			final String lote, final String material, final String peso, final String fecha) {
 		try {
-			System.out.println(
-					"\n--> Submit Transaction: UpdateAsset asset70, asset70 does not exist and should return an error");
+			contract.submitTransaction("UpdateAsset", id, tipo, origen, destino, lote, material, peso, fecha);
 
-			contract.submitTransaction("UpdateAsset", "asset", "materiala", "Recymet", "FP Zornotza", "13", "burdina",
-					"20 Kg", Instant.now().toString());
-
-			System.out.println("******** FAILED to return an error");
+			//System.out.println("******** FAILED to return an error");
 		} catch (EndorseException | SubmitException | CommitStatusException e) {
 			System.out.println("*** Successfully caught the error: ");
 			e.printStackTrace(System.out);
