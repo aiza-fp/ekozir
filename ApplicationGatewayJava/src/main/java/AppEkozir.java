@@ -41,7 +41,7 @@ import io.grpc.netty.shaded.io.grpc.netty.GrpcSslContexts;
 import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
 
 public final class AppEkozir {
-
+	// Konstanteak
 	private static String MSP_ID;
 	private static String ORIGEN;
 	private static final String CHANNEL_NAME = "kanala";
