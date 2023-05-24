@@ -12,3 +12,14 @@ echo \
   
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+-----
+
+Copy-paste ez badabil:
+
+sudo apt update
+sudo apt install build-essential dkms linux-headers-$(uname -r)
+sudo apt install virtualbox-guest-x11
+sudo VBoxClient --clipboard
+
+-----
