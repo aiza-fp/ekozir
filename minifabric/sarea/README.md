@@ -1,5 +1,13 @@
 # 3 organizazio dauzkan sarea sortzen Minifabric bidez 
 
+Hiru makinetan **minifabric** instalatu:
+
+`mkdir -p ~/fpzornotza && cd ~/fpzornotza && curl -o minifab -sL https://tinyurl.com/yxa2q6yr && chmod +x minifab`
+
+`mkdir -p ~/recymet && cd ~/recymet && curl -o minifab -sL https://tinyurl.com/yxa2q6yr && chmod +x minifab`
+
+`mkdir -p ~/ormazabal && cd ~/ormazabal && curl -o minifab -sL https://tinyurl.com/yxa2q6yr && chmod +x minifab`
+
 ## 1.- Zornotzan: sarea abiarazi, chaincodea instalatu
 
 spec.yaml_fpzornotza erabiliz, hemen **vars/chaincode/ekozir/java** karpetan chaincodea jarriko dugu eta **up**-ekin dena abiarazi:
