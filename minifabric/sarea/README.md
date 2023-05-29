@@ -37,6 +37,7 @@ Abiarazi ostean `minifab channelquery`exekutatu **./vars/kanala_config.json** fi
 spec.yaml_recymet eta spec.yaml_ormazabal erabiliz (baina spec.yaml izenarekin), sarea bakarrik abiarazten dugu, **netup** erabiliz:
 
 `minifab netup -i 2.4 -o org.recymet.com -e 7000`
+
 `minifab netup -i 2.4 -o org.ormazabal.com -e 7000`
 
 Zornotzako makinako **vars/profiles/endpoints.yaml** fitxategia Recymet eta Ormazabal-eko **vars** karpetara kopiatu eta:
@@ -45,7 +46,7 @@ Zornotzako makinako **vars/profiles/endpoints.yaml** fitxategia Recymet eta Orma
 
 ## 3.- Zornotzan: kanalaren konfigurazioa eguneratu, organizazio berriak gehitu
 
-Admins eta LifecycleEndorsement Policy aldatuko dugu edozein Admin-ek aldaketak egin ahal izateko, bestela beranduago arazoak ditugula ikusi dut:
+Admins eta LifecycleEndorsement Policy aldatuko dugu **kanala_config.json** fitxategian edozein Admin-ek aldaketak egin ahal izateko, bestela beranduago arazoak ditugula ikusi dut:
 
 ![image](https://user-images.githubusercontent.com/94653085/227966728-e352492d-0c16-47aa-9515-8f5010c1be2c.png)
 
