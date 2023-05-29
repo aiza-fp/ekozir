@@ -8,6 +8,22 @@ Hiru makinetan **minifabric** instalatu:
 
 `mkdir -p ~/ormazabal && cd ~/ormazabal && curl -o minifab -sL https://tinyurl.com/yxa2q6yr && chmod +x minifab`
 
+Euretako bakoitzean errepositorio hau klonatu eta chaincodea dagokion karpetara kopiatu:
+
+`mkdir -p vars/chaincode/ekozir/`
+
+`git clone https://github.com/aiza-fp/ekozir.git`
+
+`cp -r ./ekozir/ChaincodeJava/ ./vars/chaincode/ekozir/java`
+
+Hiruretan **spec.yaml** fitxategia sortu:
+
+FP Zornotza: `cp ./ekozir/minifabric/sarea/spec.yaml_fpzornotza ./spec.yaml`
+
+Recymet: `cp ./ekozir/minifabric/sarea/spec.yaml_recymet ./spec.yaml`
+
+Ormazabal: `cp ./ekozir/minifabric/sarea/spec.yaml_ormazabal ./spec.yaml`
+
 ## 1.- Zornotzan: sarea abiarazi, chaincodea instalatu
 
 spec.yaml_fpzornotza erabiliz, hemen **vars/chaincode/ekozir/java** karpetan chaincodea jarriko dugu eta **up**-ekin dena abiarazi:
